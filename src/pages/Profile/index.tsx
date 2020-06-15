@@ -190,7 +190,7 @@ const Profile: React.FC = () => {
               </BackButton>
 
               <SignOutButton onPress={handleSignOut}>
-                <SignOutButtonText>Sair</SignOutButtonText>
+                <Icon name="power" size={24} color="#999591" />
               </SignOutButton>
             </Header>
 
