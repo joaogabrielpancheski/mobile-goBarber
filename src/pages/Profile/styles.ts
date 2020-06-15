@@ -12,7 +12,6 @@ export const Container = styled.View`
 export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 `;
 
 export const BackButton = styled.TouchableOpacity`
@@ -22,13 +21,6 @@ export const BackButton = styled.TouchableOpacity`
 export const SignOutButton = styled(RectButton)`
   margin-top: 40px;
   margin-right: 7px;
-`;
-
-export const SignOutButtonText = styled.Text`
-  color: #ff9000;
-  font-size: 18px;
-  font-family: 'RobotoSlab-Regular';
-  margin-left: 16px;
 `;
 
 export const UserAvatarButton = styled.TouchableOpacity`
