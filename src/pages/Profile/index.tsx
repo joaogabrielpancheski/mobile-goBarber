@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 import ImagePicer from 'react-native-image-picker';
+import ImageResizer from 'react-native-image-resizer';
 
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
@@ -130,7 +131,7 @@ const Profile: React.FC = () => {
         takePhotoButtonTitle: 'Usar camêra',
         chooseFromLibraryButtonTitle: 'Escolher da galeria',
       },
-      (response) => {
+      async (response) => {
         if (response.didCancel) {
           return;
         }
@@ -140,12 +141,20 @@ const Profile: React.FC = () => {
           return;
         }
 
+        const { uri: imageUri } = await ImageResizer.createResizedImage(
+          response.uri,
+          500,
+          500,
+          'PNG',
+          100
+        );
+
         const data = new FormData();
 
         data.append('avatar', {
           type: 'image/jpeg',
           name: `${user.id}.jpg`,
-          uri: response.uri,
+          uri: imageUri,
         });
 
         api.patch('users/avatar', data).then((apiResponse) => {
